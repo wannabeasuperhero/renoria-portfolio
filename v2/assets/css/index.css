@@ -39,53 +39,6 @@ body {
   padding: 24px;
 }
 
-.frame {
-  width: 100%;
-  max-width: 940px;
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  background: var(--panel);
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 14px 50px var(--shadow),
-    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-  overflow: hidden;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 22px;
-  border-bottom: 1px solid var(--soft-line);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.status-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 14px rgba(197, 167, 255, 0.4);
-}
-
-.login-placeholder {
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--soft-line);
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 0.75rem;
-}
-
 .content {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -127,78 +80,8 @@ body {
   font-size: 0.95rem;
 }
 
-.section-title {
-  margin: 0 0 16px;
-  font-size: 0.8rem;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.log {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 450px;
-  overflow-y: auto;
-  padding-right: 6px;
-}
-
-.log::-webkit-scrollbar {
-  width: 6px;
-}
-
-.log::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.log::-webkit-scrollbar-thumb {
-  background: rgba(197, 167, 255, 0.4);
-  border-radius: 10px;
-}
-
-.log::-webkit-scrollbar-thumb:hover {
-  background: rgba(197, 167, 255, 0.7);
-}
-
-.entry {
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--soft-line);
-}
-
-.timestamp {
-  font-size: 0.74rem;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 6px;
-}
-
-.entry-text {
-  font-size: 0.94rem;
-  line-height: 1.6;
-}
-
 .footer {
   padding: 0 34px 34px;
-}
-
-.pill {
-  display: inline-flex;
-  padding: 12px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--text);
-  text-decoration: none;
-  transition: 160ms ease;
-}
-
-.pill:hover {
-  background: rgba(197, 167, 255, 0.08);
-  border-color: rgba(197, 167, 255, 0.22);
-  transform: translateY(-1px);
 }
 
 @media (max-width: 820px) {
