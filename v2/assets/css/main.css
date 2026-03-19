@@ -134,6 +134,19 @@ body {
   padding-right: 4px;
 }
 
+.log-panel .entry-main {
+  padding: 8px 10px;
+}
+
+.log-panel .entry-main .timestamp {
+  font-size: 0.65rem;
+}
+
+.log-panel .entry-main .entry-text {
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
 .panel-heading {
   margin-bottom: 16px;
   padding-bottom: 12px;
@@ -210,17 +223,19 @@ body {
 .terminal-panel {
   flex-shrink: 0;
   background: rgba(18, 17, 22, 0.82);
+  padding-top: 18px;
+  padding-bottom: 18px; 
 }
 
 .terminal-output {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.78rem;
-  line-height: 1.55;
+  font-size: 0.72rem;
+  line-height: 1.45;
   color: var(--muted);
 }
 
 .console-line {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .console-prefix {
