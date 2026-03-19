@@ -73,11 +73,13 @@ body {
   border-right: 1px solid var(--soft-line);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  padding-top: 36px;
+  padding-bottom: 36px;
 }
 
 .side-bottom {
-  margin-top: auto;
+  margin-top: 40px;
 }
 
 .main-column {
@@ -93,7 +95,22 @@ body {
   border-left: 1px solid var(--soft-line);
   display: flex;
   flex-direction: column;
+  padding-top: 24px;
+  padding-bottom: 36px;
+}
+
+.right-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 20px;
+  flex: 1;
+  padding-top: 12px;
+}
+
+.action-panel {
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 
 .panel {
@@ -112,33 +129,38 @@ body {
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .sidebar-nav a,
 .sidebar-button {
-  color: var(--text);
-  text-decoration: none;
-  padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid transparent;
+  display: block;
+  width: 100%;
+  padding: 6px 0;
   background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #b7aec8;
+  text-decoration: none;
+  text-align: center;
   font: inherit;
-  text-align: left;
+  font-size: 0.8rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: 160ms ease;
+  transition: color 160ms ease, text-shadow 160ms ease;
 }
 
 .sidebar-nav a:hover,
 .sidebar-button:hover {
-  background: rgba(197, 167, 255, 0.08);
-  border-color: rgba(197, 167, 255, 0.16);
+  color: #f3eef8;
+  text-shadow: 0 0 10px rgba(197, 167, 255, 0.20);
 }
 
 .presence-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .presence-item {
@@ -146,17 +168,15 @@ body {
   padding: 0;
   background: transparent;
   border: 0;
-  border-radius: 0;
-  color: var(--muted);
+  color: #b7aec8;
   text-decoration: none;
   cursor: pointer;
-  transition: color 160ms ease, text-shadow 160ms ease, transform 160ms ease;
+  transition: color 160ms ease, text-shadow 160ms ease;
 }
 
 .presence-item:hover {
-  color: var(--text);
+  color: #f3eef8;
   text-shadow: 0 0 10px rgba(197, 167, 255, 0.18);
-  transform: translateX(2px);
 }
 
 .main-background-logo {
@@ -303,3 +323,16 @@ body {
   height: auto;
   max-width: 340px;
 }
+
+.panel-heading {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(183, 174, 200, 0.14);
+}
+
+.panel-heading .section-title {
+  margin: 0;
+  color: #b7aec8;
+}
+
+
