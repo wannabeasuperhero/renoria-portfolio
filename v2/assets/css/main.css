@@ -202,24 +202,25 @@ body {
   text-shadow: 0 0 10px rgba(197, 167, 255, 0.18);
 }
 
-.terminal-window {
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(0, 0, 0, 0.18);
-  border: 1px solid var(--soft-line);
+.terminal-panel {
+  flex-shrink: 0;
+  background: rgba(18, 17, 22, 0.82);
+}
+
+.terminal-output {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  line-height: 1.7;
+  font-size: 0.78rem;
+  line-height: 1.55;
   color: var(--muted);
-  overflow-y: auto;
 }
 
 .console-line {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .console-prefix {
   color: var(--accent);
-  margin-right: 8px;
+  margin-right: 6px;
 }
 
 .console-command {
@@ -227,7 +228,7 @@ body {
 }
 
 .console-output {
-  color: var(--muted);
+  color: rgba(243, 238, 248, 0.72);
 }
 
 .main-background-logo {
