@@ -1,1 +1,1 @@
-console.log("Renoria main initialized.");
+console.log("Renoria main interface initialized.");
