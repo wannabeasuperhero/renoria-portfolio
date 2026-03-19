@@ -129,6 +129,10 @@ body {
   flex-shrink: 0;
 }
 
+.log-panel .log {
+  max-height: 220px;
+}
+
 .panel-heading {
   margin-bottom: 16px;
   padding-bottom: 12px;
