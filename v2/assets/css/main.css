@@ -76,6 +76,13 @@ body {
 
 .sidebar {
   border-right: 1px solid var(--soft-line);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-bottom {
+  margin-top: auto;
 }
 
 .right-column {
