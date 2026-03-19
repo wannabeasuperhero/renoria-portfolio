@@ -99,7 +99,7 @@ body {
 .panel {
   padding: 22px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.20);
   border: 1px solid var(--soft-line);
 }
 
