@@ -1,10 +1,10 @@
-async function loadLogs() {
-  const logContainer = document.getElementById("log-container");
+async function loadLogs(targetId = "log-container") {
+  const logContainer = document.getElementById(targetId);
 
   if (!logContainer) return;
 
   try {
-    const response = await fetch("assets/data/logs.json");
+    const response = await fetch("../assets/data/logs.json");
 
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
@@ -22,8 +22,8 @@ async function loadLogs() {
 
       entry.innerHTML = `
         <div class="entry-header">
-        <span class="timestamp">[${log.timestamp}]</span>
-        <span class="log-type">${typeLabel}</span>
+          <span class="timestamp">[${log.timestamp}]</span>
+          <span class="log-type">${typeLabel}</span>
         </div>
         <div class="entry-text">${log.text}</div>
       `;
@@ -36,8 +36,10 @@ async function loadLogs() {
 
     logContainer.innerHTML = `
       <div class="entry">
-        <span class="timestamp">[system]</span>
-        <span class="log-type">ERROR</span>
+        <div class="entry-header">
+          <span class="timestamp">[system]</span>
+          <span class="log-type">ERROR</span>
+        </div>
         <div class="entry-text">
           Unable to load current log data.
         </div>
