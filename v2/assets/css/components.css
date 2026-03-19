@@ -86,6 +86,13 @@
   border: 1px solid var(--soft-line);
 }
 
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
 .timestamp {
   font-size: 0.74rem;
   color: var(--muted);
@@ -95,7 +102,6 @@
 
 .log-type {
   display: inline-flex;
-  margin-bottom: 10px;
   padding: 4px 8px;
   border-radius: 999px;
   border: 1px solid rgba(197, 167, 255, 0.16);
