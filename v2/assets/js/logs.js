@@ -1,10 +1,10 @@
-async function loadLogs(targetId = "log-container") {
+async function loadLogs(targetId = "log-container", dataPath = "assets/data/logs.json") {
   const logContainer = document.getElementById(targetId);
 
   if (!logContainer) return;
 
   try {
-    const response = await fetch("../assets/data/logs.json");
+    const response = await fetch(dataPath);
 
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
@@ -30,7 +30,6 @@ async function loadLogs(targetId = "log-container") {
 
       logContainer.appendChild(entry);
     });
-
   } catch (error) {
     console.error("Error loading logs:", error);
 
