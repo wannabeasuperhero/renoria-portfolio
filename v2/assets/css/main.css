@@ -492,17 +492,19 @@ body {
 }
 
 .boards-group {
-  margin-bottom: 34px;
+  margin-bottom: 42px;
 }
 
 .boards-group-title {
-  margin: 0 0 18px;
+  margin: 0 0 22px;
+  padding-bottom: 10px;
   text-align: center;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.95rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #cbb8ef;
+  border-bottom: 1px solid rgba(197, 167, 255, 0.08);
 }
 
 .board-row {
@@ -543,11 +545,7 @@ body {
   line-height: 1.35;
 }
 
-.boards-group + .boards-group {
-  margin-top: 42px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(197, 167, 255, 0.08);
-}
+
 
 
 /* ================================
