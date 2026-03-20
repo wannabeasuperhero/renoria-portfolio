@@ -313,8 +313,8 @@ body {
 
 .log-panel .entry-main {
   padding: 8px 10px;
-  background: rgba(18, 17, 22, 0.75); /* scurito rispetto al pannello */
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(30, 26, 38, 0.62); /* viola scuro delle column */
+  border: 1px solid rgba(197, 167, 255, 0.08);
   border-radius: 12px;
 }
 
