@@ -21,38 +21,36 @@
       </div>
 
       <a href="../index.html" class="logout-button">Logout</a>
-      
     </header>
 
     <section class="main-layout">
 
       <aside class="sidebar">
-
         <div class="panel terminal-panel">
           <div class="panel-heading">
             <h2 class="section-title">Terminal</h2>
-        </div>
+          </div>
 
-        <div class="terminal-output" id="terminal-output">
-          <div class="console-line">
-            <span class="console-prefix">renoria@node</span><br>
-            <span class="console-command">system idle</span>
-        </div>
+          <div class="terminal-output" id="terminal-output">
+            <div class="console-line">
+              <span class="console-prefix">renoria@node</span><br>
+              <span class="console-command">system idle</span>
+            </div>
 
-      <div class="console-output">Awaiting module input...</div>
-      </div>
-  </div>
+            <div class="console-output">Awaiting module input...</div>
+          </div>
+        </div>
 
         <div class="left-actions">
           <div class="panel action-panel">
             <nav class="sidebar-nav">
-              <a href="#">Home</a>
+              <a href="#" data-view="home">Home</a>
             </nav>
           </div>
 
           <div class="panel action-panel">
             <nav class="sidebar-nav">
-              <a href="#">Admin</a>
+              <a href="#" data-view="admin">Admin</a>
             </nav>
           </div>
         </div>
@@ -70,8 +68,12 @@
       </aside>
 
       <section class="main-column">
-        <div class="main-background-logo">
-          <img src="../assets/img/Logo_Calderone.png" alt="">
+        <div id="module-container" class="module-container">
+          <div class="module-fallback">
+            <div class="main-background-logo">
+              <img src="../assets/img/Logo_Calderone.png" alt="">
+            </div>
+          </div>
         </div>
       </section>
 
@@ -82,19 +84,19 @@
           </div>
 
           <p class="panel-text">Modules online: 1</p>
-          <p class="panel-text">Next target: dashboard shell</p>
+          <p class="panel-text">Next target:<br>boards module</p>
         </div>
 
         <div class="right-actions">
           <div class="panel action-panel">
             <nav class="sidebar-nav">
-              <a href="#">Forum</a>
+              <a href="#" data-view="boards">Boards</a>
             </nav>
           </div>
 
           <div class="panel action-panel">
             <nav class="sidebar-nav">
-              <a href="#">Office</a>
+              <a href="#" data-view="office">Office</a>
             </nav>
           </div>
         </div>
