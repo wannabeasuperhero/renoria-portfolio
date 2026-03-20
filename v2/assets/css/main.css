@@ -339,6 +339,7 @@ body {
 }
 
 .status-panel .panel-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.74rem;
   line-height: 1.45;
   margin: 0 0 4px;
