@@ -49,17 +49,6 @@ body {
 .content {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  position: relative;
-}
-
-.content::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: -34px; /* estende la linea verso il footer */
-  left: 60%;
-  width: 1px;
-  background: var(--soft-line);
 }
 
 .left,
@@ -68,6 +57,7 @@ body {
 }
 
 .left {
+    border-right: 1px solid var(--soft-line);
 }
 
 .logo-box img {
