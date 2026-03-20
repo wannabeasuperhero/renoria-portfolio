@@ -48,6 +48,49 @@ body {
   padding: 24px;
 }
 
+/* ================================
+   SCROLLBARS
+================================ */
+
+.sidebar,
+.main-column,
+.right-column,
+.log-panel .log {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 167, 255, 0.22) transparent;
+}
+
+.sidebar::-webkit-scrollbar,
+.main-column::-webkit-scrollbar,
+.right-column::-webkit-scrollbar,
+.log-panel .log::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.main-column::-webkit-scrollbar-track,
+.right-column::-webkit-scrollbar-track,
+.log-panel .log::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.main-column::-webkit-scrollbar-thumb,
+.right-column::-webkit-scrollbar-thumb,
+.log-panel .log::-webkit-scrollbar-thumb {
+  background: rgba(197, 167, 255, 0.18);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.main-column::-webkit-scrollbar-thumb:hover,
+.right-column::-webkit-scrollbar-thumb:hover,
+.log-panel .log::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 167, 255, 0.28);
+  background-clip: padding-box;
+}
 
 /* ================================
    FRAME
@@ -97,7 +140,9 @@ body {
 
 .main-column {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+   
 }
 
 .right-column {
@@ -428,6 +473,7 @@ body {
   width: min(760px, 100%);
   margin: 0 auto;
   padding: 28px 24px 40px;
+  min-height: 100%;
 }
 
 .boards-header {
@@ -495,6 +541,12 @@ body {
   font-size: 0.72rem;
   font-style: italic;
   line-height: 1.35;
+}
+
+.boards-group + .boards-group {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(197, 167, 255, 0.08);
 }
 
 
