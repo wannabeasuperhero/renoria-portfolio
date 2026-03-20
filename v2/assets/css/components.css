@@ -47,6 +47,8 @@
 
 .section-title {
   margin: 0 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.10em;
   text-transform: uppercase;
