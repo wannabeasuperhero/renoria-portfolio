@@ -1,4 +1,3 @@
-console.log("Renoria main interface initialized.");
 async function loadMainLogs() {
   const container = document.getElementById("main-log-container");
 
@@ -6,11 +5,16 @@ async function loadMainLogs() {
 
   try {
     const response = await fetch("../assets/data/logs.json");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
     const logs = await response.json();
 
     container.innerHTML = "";
 
-    logs.slice(0, 4).forEach(log => {
+    logs.slice(0, 4).forEach((log) => {
       const entry = document.createElement("div");
       entry.className = "entry entry-main";
 
@@ -21,10 +25,17 @@ async function loadMainLogs() {
 
       container.appendChild(entry);
     });
+  } catch (error) {
+    console.error("Error loading main logs:", error);
 
-  } catch (err) {
-    console.error(err);
+    container.innerHTML = `
+      <div class="entry entry-main">
+        <span class="timestamp">[system]</span>
+        <div class="entry-text">Unable to load current log data.</div>
+      </div>
+    `;
   }
 }
 
+console.log("Renoria main interface initialized.");
 loadMainLogs();
