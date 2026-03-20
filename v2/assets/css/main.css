@@ -119,6 +119,15 @@ body {
 .action-panel {
   padding-top: 8px;
   padding-bottom: 8px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(197, 167, 255, 0.1);
+  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.action-panel:hover {
+  background: rgba(197, 167, 255, 0.12);
+  border-color: rgba(197, 167, 255, 0.16);
+  box-shadow: 0 0 14px rgba(197, 167, 255, 0.06);
 }
 
 .terminal-panel {
