@@ -47,19 +47,45 @@ async function loadMainLogs() {
 
 const moduleContainer = document.getElementById("module-container");
 const viewLinks = document.querySelectorAll("[data-view]");
+const topbarTitle = document.querySelector(".status-wrap span");
 
-async function loadView(viewName) {
+const validViews = ["home", "boards", "admin", "office"];
+
+function formatViewName(viewName) {
+  if (!viewName || viewName === "home") return "Main";
+  return viewName.charAt(0).toUpperCase() + viewName.slice(1);
+}
+
+function updateTopbar(viewName) {
+  if (!topbarTitle) return;
+  topbarTitle.textContent = `Renoria / ${formatViewName(viewName)}`;
+}
+
+function updateHash(viewName) {
+  const newHash = `#${viewName}`;
+  if (window.location.hash !== newHash) {
+    history.replaceState(null, "", newHash);
+  }
+}
+
+async function loadView(viewName, updateUrl = true) {
+  const safeView = validViews.includes(viewName) ? viewName : "home";
+
   try {
-    const response = await fetch(`views/${viewName}.html`);
+    const response = await fetch(`views/${safeView}.html`);
 
     if (!response.ok) {
-      throw new Error(`Unable to load view: ${viewName}`);
+      throw new Error(`Unable to load view: ${safeView}`);
     }
 
     const html = await response.text();
-
     moduleContainer.innerHTML = html;
 
+    updateTopbar(safeView);
+
+    if (updateUrl) {
+      updateHash(safeView);
+    }
   } catch (error) {
     console.error(error);
 
@@ -69,6 +95,12 @@ async function loadView(viewName) {
         <p>Unable to load requested module.</p>
       </div>
     `;
+
+    updateTopbar(safeView);
+
+    if (updateUrl) {
+      updateHash(safeView);
+    }
   }
 }
 
@@ -78,11 +110,16 @@ viewLinks.forEach((link) => {
     event.preventDefault();
 
     const viewName = link.dataset.view;
-
     if (!viewName) return;
 
     loadView(viewName);
   });
+});
+
+// cambio hash manuale / avanti-indietro browser
+window.addEventListener("hashchange", () => {
+  const hashView = window.location.hash.replace("#", "");
+  loadView(hashView || "home", false);
 });
 
 // ========================
@@ -92,4 +129,7 @@ viewLinks.forEach((link) => {
 console.log("Renoria main interface initialized.");
 
 loadMainLogs();
-loadView("home");
+
+const initialView = window.location.hash.replace("#", "") || "home";
+loadView(initialView, false);
+updateHash(validViews.includes(initialView) ? initialView : "home");
