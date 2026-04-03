@@ -16,6 +16,16 @@
         "The current structure is based on boards, board-specific thread lists and dedicated thread data files.",
         "Future evolution will likely move toward PHP, sessions and dynamic post creation."
       ]
+    },
+    {
+      "id": "post-002",
+      "author": "Renoria",
+      "role": "System Owner",
+      "createdAt": "2026-03-21 09:14",
+      "content": [
+        "Update: the board structure is now stable and rendering correctly.",
+        "Next step will be implementing thread navigation and improving UI consistency across modules."
+      ]
     }
   ]
 }
