@@ -292,6 +292,8 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
     const backBtn = document.getElementById("btn-back-board");
     const homeBoardsBtn = document.getElementById("btn-home-boards");
     const newReplyBtn = document.getElementById("btn-new-reply");
+    const sendBtn = document.getElementById("btn-send-reply");
+    const textarea = document.getElementById("reply-input");
 
     if (pathEl) {
       pathEl.innerHTML = `<span class="path-dim">Boards</span> / ${groupName} / ${boardName}`;
@@ -313,7 +315,16 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
 
     if (newReplyBtn) {
       newReplyBtn.addEventListener("click", () => {
-        console.log(`New reply requested for thread: ${threadId}`);
+        if (textarea) {
+          textarea.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+          setTimeout(() => {
+            textarea.focus();
+          }, 250);
+        }
       });
     }
 
@@ -349,6 +360,23 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
         postsContainer.appendChild(article);
       });
     }
+
+    if (sendBtn && textarea) {
+      sendBtn.addEventListener("click", () => {
+        const text = textarea.value.trim();
+
+        if (!text) return;
+
+        console.log("Mock reply:", text);
+
+        textarea.value = "";
+
+        sendBtn.textContent = "Sent";
+        setTimeout(() => {
+          sendBtn.textContent = "Send";
+        }, 1200);
+      });
+    }
   } catch (error) {
     console.error("Error loading thread view:", error);
     moduleContainer.innerHTML = `
@@ -358,27 +386,6 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
       </div>
     `;
   }
-}
-
-const sendBtn = document.getElementById("btn-send-reply");
-const textarea = document.getElementById("reply-input");
-
-if (sendBtn && textarea) {
-  sendBtn.addEventListener("click", () => {
-    const text = textarea.value.trim();
-
-    if (!text) return;
-
-    console.log("Mock reply:", text);
-
-    textarea.value = "";
-
-    // 👇 opzionale: feedback visivo
-    sendBtn.textContent = "Sent";
-    setTimeout(() => {
-      sendBtn.textContent = "Send";
-    }, 1200);
-  });
 }
 
 // ========================
