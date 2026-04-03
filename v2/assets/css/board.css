@@ -159,8 +159,8 @@
 
 .board-view .date-separator {
   display: inline-block;
-  margin: 0 1px;
-  font-size: 0.48rem;
+  margin: 0 2px;
+  font-size: 0.50rem;
   color: rgba(243, 238, 248, 0.28);
   vertical-align: middle;
 }
