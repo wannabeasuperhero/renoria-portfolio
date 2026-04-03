@@ -211,11 +211,13 @@
 }
 
 .thread-view .reply-header {
-  font-size: 0.85rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
+  color: rgba(243, 238, 248, 0.85);
   margin-bottom: 10px;
+  margin-left: 15px;
 }
 
 .thread-view .reply-textarea {
@@ -228,7 +230,7 @@
   padding: 12px;
   border-radius: 10px;
 
-  background: rgba(30, 26, 38, 0.4);
+  background: rgba(18, 16, 24, 0.72);
   border: 1px solid rgba(197, 167, 255, 0.08);
 
   color: rgba(243, 238, 248, 0.85);
