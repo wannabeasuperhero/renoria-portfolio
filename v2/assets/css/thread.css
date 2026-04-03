@@ -241,8 +241,8 @@
 }
 
 .thread-view .reply-textarea:focus {
-  border-color: rgba(197, 167, 255, 0.18);
-  box-shadow: 0 0 10px rgba(197, 167, 255, 0.08);
+  border-color: rgba(197, 167, 255, 0.25);
+  box-shadow: 0 0 14px rgba(197, 167, 255, 0.10);
 }
 
 .thread-view .reply-actions {
