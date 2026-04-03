@@ -238,6 +238,8 @@
   line-height: 1.5;
 
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .thread-view .reply-textarea:focus,
