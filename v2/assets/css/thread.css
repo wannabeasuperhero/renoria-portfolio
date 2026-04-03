@@ -202,10 +202,7 @@
 
 .thread-view .reply-box {
   margin-top: 28px;
-  padding: 16px 18px;
-  border-radius: 16px;
-  background: rgba(18, 16, 24, 0.72);
-  border: 1px solid rgba(197, 167, 255, 0.08);
+  padding: 10px 0;
 }
 
 .thread-view .reply-header {
@@ -217,18 +214,22 @@
 }
 
 .thread-view .reply-textarea {
-  width: 100%;
-  min-height: 110px;
+  width: 80%;
+  min-height: 90px;
   resize: vertical;
 
-  padding: 12px 14px;
-  border-radius: 12px;
+  margin: 0 auto; /* 👈 centrata */
 
-  background: rgba(30, 26, 38, 0.6);
+  display: block;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  background: rgba(30, 26, 38, 0.4);
   border: 1px solid rgba(197, 167, 255, 0.08);
 
   color: rgba(243, 238, 248, 0.85);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 
   outline: none;
@@ -240,7 +241,30 @@
 }
 
 .thread-view .reply-actions {
+  width: 80%;
+  margin: 10px auto 0;
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+}
+
+.thread-view .reply-actions .sidebar-button {
+  width: auto;
+  padding: 8px 16px;
+
+  background: rgba(30, 26, 38, 0.7);
+  border: 1px solid rgba(197, 167, 255, 0.18);
+  border-radius: 999px;
+
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+
+  color: var(--muted);
+
+  transition: all 0.15s ease;
+}
+
+.thread-view .reply-actions .sidebar-button:hover {
+  background: rgba(197, 167, 255, 0.12);
+  border-color: rgba(197, 167, 255, 0.28);
+  color: var(--text);
 }
