@@ -12,14 +12,14 @@
 }
 
 .board-view .location-title {
-  margin-bottom: 40px;
+  margin-bottom: 18px;
   text-align: center;
 }
 
 .board-view .location-path {
-  margin: 0 0 10px;
-  font-size: 0.95rem;
-  letter-spacing: 0.14em;
+  margin: 0 0 6px;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #8c78ba;
 }
@@ -27,9 +27,9 @@
 .board-view .location-name {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.45rem;
+  font-size: 1.42rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   color: rgba(243, 238, 248, 0.92);
 }
 
@@ -37,7 +37,7 @@
   border: 0;
   height: 1px;
   background: rgba(197, 167, 255, 0.08);
-  margin: 0 0 28px;
+  margin: 0 0 24px;
 }
 
 .board-view .btn-row {
@@ -46,7 +46,7 @@
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .board-view .btn-row .sidebar-button {
@@ -78,7 +78,7 @@
 }
 
 .board-view .btn-row .sidebar-button.primary {
-  padding-inline: 26px;
+  padding-inline: 20px;
 }
 
 .board-view .board-table {
@@ -89,12 +89,12 @@
 
 .board-view .board-table thead th {
   text-align: left;
-  font-size: 0.82rem;
+  font-size: 0.68rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: var(--muted);
-  padding: 0 12px 12px;
+  color: rgba(243, 238, 248, 0.58);
+  padding: 0 12px 10px;
   border-bottom: 1px solid rgba(197, 167, 255, 0.08);
 }
 
@@ -155,12 +155,15 @@
   font-size: 0.72rem;
   line-height: 1.35;
   color: rgba(243, 238, 248, 0.62);
+  /* se vuoi provare stile log, decommenta:
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  */
 }
 
 .board-view .thread-title {
   font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text);
+  font-weight: 400;
+  color: rgba(243, 238, 248, 0.76);
   line-height: 1.35;
 }
 
@@ -201,9 +204,20 @@
   background: #8e7aa8;
 }
 
+.board-view .col-replies {
+  font-size: 0.72rem;
+  color: rgba(243, 238, 248, 0.62);
+}
+
+.board-view .last-reply-name,
+.board-view .last-reply-date {
+  text-align: left;
+}
+
 .board-view .no-reply {
-  font-size: 1rem;
-  color: var(--muted);
+  display: inline-block;
+  font-size: 0.72rem;
+  color: rgba(243, 238, 248, 0.62);
 }
 
 .board-view .board-empty-cell {
@@ -222,7 +236,7 @@
   }
 
   .board-view .location-title {
-    margin-bottom: 28px;
+    margin-bottom: 16px;
   }
 
   .board-view .btn-row {
