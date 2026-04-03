@@ -240,8 +240,17 @@
   outline: none;
 }
 
-.thread-view .reply-textarea:focus {
-  outline: 1px solid red;
+.thread-view .reply-textarea:focus,
+.thread-view .reply-textarea:focus-visible {
+  outline: none;
+  border-color: rgba(197, 167, 255, 0.22);
+  box-shadow: none;
+}
+
+.thread-view .reply-textarea,
+.thread-view .reply-textarea:focus,
+.thread-view .reply-textarea:focus-visible {
+  outline: none;
 }
 
 .thread-view .reply-actions {
