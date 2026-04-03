@@ -121,6 +121,7 @@
 .board-view .board-table th:nth-child(1),
 .board-view .board-table td:nth-child(1) {
   width: 22%;
+  text-align: center;
 }
 
 .board-view .board-table th:nth-child(2),
@@ -132,6 +133,7 @@
 .board-view .board-table th:nth-child(3),
 .board-view .board-table td:nth-child(3) {
   width: 38%;
+  text-align: center;
 }
 
 .board-view .board-table th:nth-child(4),
@@ -143,7 +145,7 @@
 .board-view .board-table th:nth-child(5),
 .board-view .board-table td:nth-child(5) {
   width: 25%;
-  text-align: left;
+  text-align: center;
 }
 
 .board-view .author-name,
@@ -158,19 +160,17 @@
 .board-view .author-date,
 .board-view .last-reply-date {
   display: block;
-  font-size: 0.72rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.70rem;
   line-height: 1.35;
   color: rgba(243, 238, 248, 0.62);
-  /* se vuoi provare stile log, decommenta:
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  */
 }
 
 .board-view .date-separator {
   display: inline-block;
   margin: 0 5px;
-  font-size: 0.58rem;
-  color: rgba(243, 238, 248, 0.36);
+  font-size: 0.52rem;
+  color: rgba(243, 238, 248, 0.28);
   vertical-align: middle;
 }
 
@@ -188,7 +188,7 @@
 }
 
 .board-view .flag-important {
-  color: #ffcf7b;
+  color: rgba(255, 207, 123, 0.82);
 }
 
 .board-view .col-status,
@@ -198,8 +198,8 @@
 
 .board-view .status-dot {
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   vertical-align: middle;
   background: #6d648e;
@@ -207,7 +207,7 @@
 
 .board-view .status-dot.open {
   background: #8fd7df;
-  box-shadow: 0 0 10px rgba(143, 215, 223, 0.22);
+  box-shadow: 0 0 8px rgba(143, 215, 223, 0.18);
 }
 
 .board-view .status-dot.closed {
