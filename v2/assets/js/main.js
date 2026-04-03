@@ -52,6 +52,7 @@ async function loadBoards() {
   try {
     const response = await fetch("assets/data/boards.json");
     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
     const groups = await response.json();
 
     container.innerHTML = "";
@@ -67,22 +68,22 @@ async function loadBoards() {
         boardEl.href = "#";
         boardEl.className = "board-row";
         boardEl.dataset.boardId = board.id;
+
         boardEl.innerHTML = `
-            <span class="board-name">${board.name}</span>
-            <span class="board-description">${board.description}</span>
+          <span class="board-name">${board.name}</span>
+          <span class="board-description">${board.description}</span>
         `;
 
         boardEl.addEventListener("click", (e) => {
-        e.preventDefault();
+          e.preventDefault();
           loadBoardView(board.id, board.name, group.group);
-      });
-        
+        });
+
         groupEl.appendChild(boardEl);
       });
 
       container.appendChild(groupEl);
     });
-
   } catch (error) {
     console.error("Error loading boards:", error);
     container.innerHTML = `
@@ -100,15 +101,22 @@ async function loadBoards() {
 
 async function loadBoardView(boardId, boardName, groupName) {
   try {
-    const response = await fetch(`views/board.html`);
+    const response = await fetch("views/board.html");
     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
     const html = await response.text();
     moduleContainer.innerHTML = html;
 
     updateTopbar("boards");
     loadBoardThreads(boardId, boardName, groupName);
   } catch (error) {
-    console.error(error);
+    console.error("Error loading board view:", error);
+    moduleContainer.innerHTML = `
+      <div class="module-error">
+        <h2>Module error</h2>
+        <p>Unable to load board view.</p>
+      </div>
+    `;
   }
 }
 
@@ -117,31 +125,58 @@ async function loadBoardThreads(boardId, boardName, groupName) {
   const titleEl = document.getElementById("board-title");
   const pathEl = document.getElementById("board-path");
   const backBtn = document.getElementById("btn-back");
+  const homeBoardsBtn = document.getElementById("btn-home-boards");
+  const newThreadBtn = document.getElementById("btn-new-thread");
 
   if (titleEl) titleEl.textContent = boardName;
   if (pathEl) pathEl.textContent = `Boards / ${groupName}`;
-  if (backBtn) backBtn.textContent = `↩ Boards`;
+  if (backBtn) backBtn.textContent = "↩ Back";
+
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      loadView("boards");
+    });
+  }
+
+  if (homeBoardsBtn) {
+    homeBoardsBtn.addEventListener("click", () => {
+      loadView("boards");
+    });
+  }
+
+  if (newThreadBtn) {
+    newThreadBtn.addEventListener("click", () => {
+      console.log(`New thread requested for board: ${boardId}`);
+    });
+  }
 
   if (!container) return;
 
   try {
     const response = await fetch(`assets/data/boards/${boardId}.json`);
     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
     const data = await response.json();
+    const threads = Array.isArray(data.threads) ? data.threads : [];
 
     container.innerHTML = "";
 
-    if (data.threads.length === 0) {
-      container.innerHTML = `<p class="board-empty">No threads yet.</p>`;
+    if (threads.length === 0) {
+      container.innerHTML = `
+        <tr>
+          <td colspan="5" class="board-empty-cell">No threads yet.</td>
+        </tr>
+      `;
       return;
     }
 
-    data.threads.forEach((thread) => {
+    threads.forEach((thread) => {
       const row = document.createElement("tr");
+
       row.innerHTML = `
         <td>
           <div class="author-name">${thread.author}</div>
-          <div class="author-date">${thread.date}</div>
+          <div class="author-date">${thread.createdAt}</div>
         </td>
         <td class="col-status">
           <span class="status-dot ${thread.status}"></span>
@@ -152,10 +187,11 @@ async function loadBoardThreads(boardId, boardName, groupName) {
         </td>
         <td class="col-replies">${thread.replies}</td>
         <td>
-          ${thread.lastReply
-            ? `<div class="last-reply-name">${thread.lastReply.author}</div>
-               <div class="last-reply-date">${thread.lastReply.date}</div>`
-            : `<span class="no-reply">—</span>`
+          ${
+            thread.lastReply
+              ? `<div class="last-reply-name">${thread.lastReply.author}</div>
+                 <div class="last-reply-date">${thread.lastReply.createdAt}</div>`
+              : `<span class="no-reply">—</span>`
           }
         </td>
       `;
@@ -167,11 +203,28 @@ async function loadBoardThreads(boardId, boardName, groupName) {
 
       container.appendChild(row);
     });
-
   } catch (error) {
     console.error("Error loading threads:", error);
-    container.innerHTML = `<tr><td colspan="5">Unable to load threads.</td></tr>`;
+    container.innerHTML = `
+      <tr>
+        <td colspan="5">Unable to load threads.</td>
+      </tr>
+    `;
   }
+}
+
+// ========================
+// THREAD VIEW LOADER
+// ========================
+
+function loadThreadView(threadId, threadTitle, boardId, boardName, groupName) {
+  console.log("Load thread view:", {
+    threadId,
+    threadTitle,
+    boardId,
+    boardName,
+    groupName
+  });
 }
 
 // ========================
@@ -213,9 +266,9 @@ async function loadView(viewName, updateUrl = true) {
 
     const html = await response.text();
     moduleContainer.innerHTML = html;
-    
+
     if (safeView === "boards") loadBoards();
-    
+
     updateTopbar(safeView);
 
     if (updateUrl) {
