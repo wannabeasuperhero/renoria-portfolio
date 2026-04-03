@@ -819,3 +819,7 @@ body {
     font-size: 0.82rem;
   }
 }
+
+.board-view {
+  outline: 4px solid red !important;
+}
