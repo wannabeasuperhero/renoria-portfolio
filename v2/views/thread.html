@@ -12,18 +12,19 @@
     <button class="sidebar-button primary" id="btn-new-reply">+ Reply</button>
   </div>
 
+  <div class="posts-container" id="posts-container"></div>
+
   <div class="reply-box">
-  <div class="reply-inner">
+    <div class="reply-inner">
+      <div class="reply-header">
+        Reply
+      </div>
 
-    <div class="reply-header">
-      Leave a reply
+      <textarea id="reply-input" class="reply-textarea" placeholder="Write your message..."></textarea>
+
+      <div class="reply-actions">
+        <button id="btn-send-reply" class="sidebar-button">Send</button>
+      </div>
     </div>
-
-    <textarea id="reply-input" placeholder="Write your message..."></textarea>
-
-    <div class="reply-actions">
-      <button id="btn-send-reply">Send</button>
-    </div>
-
   </div>
 </div>
