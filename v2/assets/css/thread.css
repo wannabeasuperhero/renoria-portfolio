@@ -201,8 +201,16 @@
 ================================ */
 
 .thread-view .reply-box {
-  margin-top: 28px;
-  padding: 10px 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  display: none;
+}
+
+.thread-view .reply-box.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .thread-view .reply-inner {
@@ -244,18 +252,8 @@
 
 .thread-view .reply-textarea:focus,
 .thread-view .reply-textarea:focus-visible {
-  outline: none;
-  border-color: rgba(197, 167, 255, 0.18) !important;
-  box-shadow: 0 0 10px rgba(197, 167, 255, 0.08) !important;
-}
-
-.thread-view .reply-textarea,
-.thread-view .reply-textarea:focus,
-.thread-view .reply-textarea:focus-visible,
-.thread-view .reply-textarea:active {
-  outline: none !important;
-  -webkit-appearance: none;
-  appearance: none;
+  border-color: rgba(197, 167, 255, 0.18);
+  box-shadow: 0 0 10px rgba(197, 167, 255, 0.08);
 }
 
 .thread-view .reply-actions {
