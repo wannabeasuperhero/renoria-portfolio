@@ -203,7 +203,6 @@
 .thread-view .reply-box {
   margin-top: 28px;
   padding: 10px 0;
-  width: 80%;
 }
 
 .thread-view .reply-header {
@@ -215,6 +214,7 @@
 }
 
 .thread-view .reply-textarea {
+  width: 80%;
   min-height: 90px;
   resize: vertical;
 
