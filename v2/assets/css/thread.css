@@ -94,11 +94,11 @@
 
 .thread-view .forum-post {
   display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
+  grid-template-columns: 160px minmax(0, 1fr);
   gap: 16px;
   padding: 16px 18px;
   border-radius: 16px;
-  background: rgba(30, 26, 38, 0.62);
+  background: rgba(18, 16, 24, 0.72);
   border: 1px solid rgba(197, 167, 255, 0.08);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
 }
@@ -117,8 +117,8 @@
 }
 
 .thread-view .post-avatar {
-  width: 42px;
-  height: 42px;
+  width: 80px;
+  height: 80px;
   border-radius: 10px;
   margin-bottom: 8px;
   background: rgba(197, 167, 255, 0.08);
@@ -145,6 +145,7 @@
 
 .thread-view .post-date {
   display: inline-block;
+  text-align: right;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.68rem;
   line-height: 1.2;
