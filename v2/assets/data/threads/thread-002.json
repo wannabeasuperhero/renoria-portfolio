@@ -1,0 +1,27 @@
+{
+  "id": "thread-002",
+  "boardId": "development",
+  "title": "Current Mission",
+  "kind": "system",
+  "status": "open",
+  "createdAt": "2026-03-20 15:30",
+  "posts": [
+    {
+      "id": "post-001",
+      "author": "Renoria",
+      "role": "System Owner",
+      "createdAt": "2026-04-03 22:45",
+      "content": [
+        "Current objective: build a solid understanding of JavaScript from the ground up.",
+        "Instead of approaching it in a purely theoretical way, I am integrating the learning process directly into a real system: the forum module of this project.",
+        "The goal is to combine learning and practical application, using JavaScript extensively to handle structure, rendering, and interaction logic across boards, threads and posts.",
+        "This approach allows me to:",
+        "- immediately test what I learn",
+        "- understand real use cases instead of isolated concepts",
+        "- progressively evolve both my skills and the system itself",
+        "The forum is currently static and JSON-driven, but it is being designed with a future backend integration in mind.",
+        "Next phase: begin backend implementation and transition from static structure to a functional system."
+      ]
+    }
+  ]
+}
