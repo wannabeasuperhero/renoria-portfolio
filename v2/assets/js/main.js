@@ -288,6 +288,7 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
     const pathEl = document.getElementById("thread-path");
     const titleEl = document.getElementById("thread-title");
     const postsContainer = document.getElementById("posts-container");
+    const replyBox = document.getElementById("reply-box");
 
     const backBtn = document.getElementById("btn-back-board");
     const homeBoardsBtn = document.getElementById("btn-home-boards");
@@ -315,16 +316,18 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
 
     if (newReplyBtn) {
       newReplyBtn.addEventListener("click", () => {
-        if (textarea) {
-          textarea.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
+        if (!replyBox) return;
 
-          setTimeout(() => {
-            textarea.focus();
-          }, 250);
-        }
+        replyBox.classList.add("active");
+
+        replyBox.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        setTimeout(() => {
+          if (textarea) textarea.focus();
+        }, 250);
       });
     }
 
