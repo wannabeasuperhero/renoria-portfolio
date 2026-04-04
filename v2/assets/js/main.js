@@ -277,27 +277,31 @@ async function loadBoardThreads(boardId, boardName, groupName) {
       const lastReplyDate = getLastReplyDate(thread.lastReply);
 
       row.innerHTML = `
-        <td>
-          <div class="author-name">${thread.author}</div>
-          <div class="author-date">${formatBoardDate(thread.createdAt)}</div>
-        </td>
-        <td class="col-status">
-          <span class="status-dot ${thread.status}"></span>
-        </td>
-        <td>
-          ${thread.important ? '<span class="thread-flag flag-important">!</span>' : ""}
-          <span class="thread-title">${thread.title}</span>
-        </td>
-        <td class="col-replies">${thread.replies}</td>
-        <td>
-          ${
-            thread.lastReply && lastReplyDate
-              ? `<div class="last-reply-name">${thread.lastReply.author}</div>
-                 <div class="last-reply-date">${formatBoardDate(lastReplyDate)}</div>`
-              : `<span class="no-reply">—</span>`
-          }
-        </td>
-      `;
+  <td data-label="Author">
+    <div>
+      <div class="author-name">${thread.author}</div>
+      <div class="author-date">${formatBoardDate(thread.createdAt)}</div>
+    </div>
+  </td>
+  <td data-label="Status" class="col-status">
+    <span class="status-dot ${thread.status}"></span>
+  </td>
+  <td data-label="Thread">
+    ${thread.important ? '<span class="thread-flag flag-important">!</span>' : ""}
+    <span class="thread-title">${thread.title}</span>
+  </td>
+  <td data-label="Replies" class="col-replies">${thread.replies}</td>
+  <td data-label="Last Activity">
+    ${
+      thread.lastReply && lastReplyDate
+        ? `<div>
+             <div class="last-reply-name">${thread.lastReply.author}</div>
+             <div class="last-reply-date">${formatBoardDate(lastReplyDate)}</div>
+           </div>`
+        : `<span class="no-reply">—</span>`
+    }
+  </td>
+`;
 
       row.style.cursor = "pointer";
       row.addEventListener("click", () => {
