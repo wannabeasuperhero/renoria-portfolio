@@ -307,7 +307,15 @@
   .board-view .mobile-value {
     min-width: 0;
     text-align: right;
+    justify-self: end;
   }
+
+  .board-view .mobile-value .last-reply-name,
+  .board-view .mobile-value .last-reply-date,
+  .board-view .mobile-value .author-name,
+  .board-view .mobile-value .author-date {
+    text-align: right;
+   }
 
   .board-view .thread-value {
     display: flex;
