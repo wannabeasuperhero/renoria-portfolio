@@ -93,40 +93,90 @@ async function loadBoards() {
   if (!container) return;
 
   try {
-    const response = await fetch("assets/data/boards.json");
-    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-
-    const groups = await response.json();
+    const boardsResponse = await fetch("assets/data/boards.json");
+    if (!boardsResponse.ok) throw new Error(`HTTP error: ${boardsResponse.status}`);
+    const groups = await boardsResponse.json();
 
     container.innerHTML = "";
 
-    groups.forEach((group) => {
-      const groupEl = document.createElement("div");
+    for (const group of groups) {
+      const groupEl = document.createElement("section");
       groupEl.className = "boards-group";
 
-      groupEl.innerHTML = `<h2 class="boards-group-title">${group.group}</h2>`;
+      groupEl.innerHTML = `
+        <h2 class="boards-group-title">${group.group}</h2>
+        <div class="boards-group-list"></div>
+      `;
 
-      group.boards.forEach((board) => {
-        const boardEl = document.createElement("a");
-        boardEl.href = "#";
-        boardEl.className = "board-row";
-        boardEl.dataset.boardId = board.id;
+      const listEl = groupEl.querySelector(".boards-group-list");
 
-        boardEl.innerHTML = `
-          <span class="board-name">${board.name}</span>
-          <span class="board-description">${board.description}</span>
+      for (const board of group.boards) {
+        let threadCount = "—";
+        let lastActivity = "—";
+
+        try {
+          const boardResponse = await fetch(`assets/data/boards/${board.id}.json`);
+          if (boardResponse.ok) {
+            const boardData = await boardResponse.json();
+            const threads = Array.isArray(boardData.threads) ? boardData.threads : [];
+
+            threadCount = `${threads.length} ${threads.length === 1 ? "thread" : "threads"}`;
+
+            const latestDates = threads
+              .map((thread) => {
+                if (thread.lastReply && (thread.lastReply.createdAt || thread.lastReply.date)) {
+                  return thread.lastReply.createdAt || thread.lastReply.date;
+                }
+                return thread.createdAt || null;
+              })
+              .filter(Boolean)
+              .sort()
+              .reverse();
+
+            if (latestDates.length > 0) {
+              const latest = latestDates[0];
+              const [datePart] = latest.split(" ");
+              if (datePart) {
+                const [year, month, day] = datePart.split("-");
+                if (year && month && day) {
+                  lastActivity = `${day}/${month}`;
+                }
+              }
+            }
+          }
+        } catch (error) {
+          console.warn(`Unable to load board stats for ${board.id}:`, error);
+        }
+
+        const rowEl = document.createElement("a");
+        rowEl.href = "#";
+        rowEl.className = "board-row";
+        rowEl.dataset.boardId = board.id;
+
+        rowEl.innerHTML = `
+          <div class="board-main">
+            <span class="board-bullet">•</span>
+            <span class="board-name">${board.name}</span>
+            <span class="board-slash">/</span>
+            <span class="board-description">${board.description}</span>
+          </div>
+          <div class="board-meta">
+            <span class="board-count">${threadCount}</span>
+            <span class="board-meta-separator">•</span>
+            <span class="board-last">${lastActivity}</span>
+          </div>
         `;
 
-        boardEl.addEventListener("click", (e) => {
+        rowEl.addEventListener("click", (e) => {
           e.preventDefault();
           loadBoardView(board.id, board.name, group.group);
         });
 
-        groupEl.appendChild(boardEl);
-      });
+        listEl.appendChild(rowEl);
+      }
 
       container.appendChild(groupEl);
-    });
+    }
   } catch (error) {
     console.error("Error loading boards:", error);
     container.innerHTML = `
