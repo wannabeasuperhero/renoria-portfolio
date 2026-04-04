@@ -73,26 +73,6 @@ function terminalLog(type, message, options = {}) {
   }
 }
 
-function logViewEntry(viewName) {
-  const labels = {
-    home: "Main",
-    boards: "Boards",
-    admin: "Admin",
-    office: "Office"
-  };
-
-  const label = labels[viewName] || formatViewName(viewName);
-  terminalLog("nav", `Entered: ${label}`);
-}
-
-function logBoardEntry(groupName, boardName) {
-  terminalLog("nav", `Entered: Board > ${groupName} / ${boardName}`);
-}
-
-function logThreadEntry(threadTitle) {
-  terminalLog("nav", `Viewing thread: "${threadTitle}"`);
-}
-
 function logTip(message) {
   terminalLog("tip", `Tip: ${message}`);
 }
@@ -250,7 +230,6 @@ async function loadBoardView(boardId, boardName, groupName) {
     moduleContainer.innerHTML = html;
 
     updateTopbar("boards");
-    logBoardEntry(groupName, boardName);
 
     if (window.location.hash !== `#boards-${boardId}`) {
       updateHash(`boards-${boardId}`);
@@ -292,14 +271,12 @@ async function loadBoardThreads(boardId, boardName, groupName) {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      terminalLog("nav", "Returning to: Boards");
       loadView("boards");
     });
   }
 
   if (homeBoardsBtn) {
     homeBoardsBtn.addEventListener("click", () => {
-      terminalLog("nav", "Returning to: Boards");
       loadView("boards");
     });
   }
@@ -443,18 +420,14 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
 
     if (titleEl) titleEl.textContent = threadData.title.toUpperCase();
 
-    logThreadEntry(threadData.title);
-
     if (backBtn) {
       backBtn.addEventListener("click", () => {
-        terminalLog("nav", `Returning to board: ${boardName}`);
         loadBoardView(boardId, boardName, groupName);
       });
     }
 
     if (homeBoardsBtn) {
       homeBoardsBtn.addEventListener("click", () => {
-        terminalLog("nav", "Returning to: Boards");
         loadView("boards");
       });
     }
@@ -615,12 +588,6 @@ async function loadView(viewName, updateUrl = true) {
     }
 
     updateTopbar(safeView);
-
-    if (!viewName.startsWith("boards-")) {
-      logViewEntry(safeView);
-    } else if (safeView === "boards") {
-      terminalLog("nav", "Entered: Boards");
-    }
 
     if (updateUrl) {
       if (viewName.startsWith("boards-")) {
