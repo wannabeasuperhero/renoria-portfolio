@@ -32,6 +32,11 @@ async function loadMainLogs() {
   } catch (error) {
     console.error("Error loading main logs:", error);
 
+    terminalLog("sys", "Main log feed unavailable.", {
+      speed: 18,
+      delayAfter: 180
+    });
+
     container.innerHTML = `
       <div class="entry entry-main">
         <span class="timestamp">[system]</span>
@@ -62,6 +67,36 @@ function getLastReplyDate(lastReply) {
   return lastReply.createdAt || lastReply.date || null;
 }
 
+function terminalLog(type, message, options = {}) {
+  if (typeof window.addTerminalLog === "function") {
+    window.addTerminalLog(type, message, options);
+  }
+}
+
+function logViewEntry(viewName) {
+  const labels = {
+    home: "Main",
+    boards: "Boards",
+    admin: "Admin",
+    office: "Office"
+  };
+
+  const label = labels[viewName] || formatViewName(viewName);
+  terminalLog("nav", `Entered: ${label}`);
+}
+
+function logBoardEntry(groupName, boardName) {
+  terminalLog("nav", `Entered: Board > ${groupName} / ${boardName}`);
+}
+
+function logThreadEntry(threadTitle) {
+  terminalLog("nav", `Viewing thread: "${threadTitle}"`);
+}
+
+function logTip(message) {
+  terminalLog("tip", `Tip: ${message}`);
+}
+
 async function openBoardFromHash(boardId) {
   try {
     const response = await fetch("assets/data/boards.json");
@@ -79,8 +114,16 @@ async function openBoardFromHash(boardId) {
     }
 
     console.warn(`Board not found for hash: ${boardId}`);
+    terminalLog("sys", `Requested board not found: ${boardId}`, {
+      speed: 18,
+      delayAfter: 180
+    });
   } catch (error) {
     console.error("Error opening board from hash:", error);
+    terminalLog("sys", "Unable to restore board from URL hash.", {
+      speed: 18,
+      delayAfter: 180
+    });
   }
 }
 
@@ -179,6 +222,12 @@ async function loadBoards() {
     }
   } catch (error) {
     console.error("Error loading boards:", error);
+
+    terminalLog("sys", "Board index unavailable.", {
+      speed: 18,
+      delayAfter: 180
+    });
+
     container.innerHTML = `
       <div class="module-error">
         <h2>Error</h2>
@@ -201,14 +250,21 @@ async function loadBoardView(boardId, boardName, groupName) {
     moduleContainer.innerHTML = html;
 
     updateTopbar("boards");
+    logBoardEntry(groupName, boardName);
 
     if (window.location.hash !== `#boards-${boardId}`) {
       updateHash(`boards-${boardId}`);
     }
 
-    loadBoardThreads(boardId, boardName, groupName);
+    await loadBoardThreads(boardId, boardName, groupName);
   } catch (error) {
     console.error("Error loading board view:", error);
+
+    terminalLog("sys", "Unable to load board view.", {
+      speed: 18,
+      delayAfter: 180
+    });
+
     moduleContainer.innerHTML = `
       <div class="module-error">
         <h2>Module error</h2>
@@ -236,18 +292,25 @@ async function loadBoardThreads(boardId, boardName, groupName) {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
+      terminalLog("nav", "Returning to: Boards");
       loadView("boards");
     });
   }
 
   if (homeBoardsBtn) {
     homeBoardsBtn.addEventListener("click", () => {
+      terminalLog("nav", "Returning to: Boards");
       loadView("boards");
     });
   }
 
   if (newThreadBtn) {
     newThreadBtn.addEventListener("click", () => {
+      terminalLog("sys", `Thread creation requested in board: ${boardName}`, {
+        speed: 18,
+        delayAfter: 180
+      });
+      logTip("thread creation module not available in current build");
       console.log(`New thread requested for board: ${boardId}`);
     });
   }
@@ -264,6 +327,11 @@ async function loadBoardThreads(boardId, boardName, groupName) {
     container.innerHTML = "";
 
     if (threads.length === 0) {
+      terminalLog("sys", `No threads found in board: ${boardName}`, {
+        speed: 18,
+        delayAfter: 180
+      });
+
       container.innerHTML = `
         <tr>
           <td colspan="5" class="board-empty-cell">No threads yet.</td>
@@ -277,44 +345,44 @@ async function loadBoardThreads(boardId, boardName, groupName) {
       const lastReplyDate = getLastReplyDate(thread.lastReply);
 
       row.innerHTML = `
-  <td data-label="Author">
-    <div class="mobile-value">
-      <div class="author-name">${thread.author}</div>
-      <div class="author-date">${formatBoardDate(thread.createdAt)}</div>
-    </div>
-  </td>
+        <td data-label="Author">
+          <div class="mobile-value">
+            <div class="author-name">${thread.author}</div>
+            <div class="author-date">${formatBoardDate(thread.createdAt)}</div>
+          </div>
+        </td>
 
-  <td data-label="Status" class="col-status">
-    <div class="mobile-value status-value">
-      <span class="status-dot ${thread.status}"></span>
-      <span class="status-text">${thread.status}</span>
-    </div>
-  </td>
+        <td data-label="Status" class="col-status">
+          <div class="mobile-value status-value">
+            <span class="status-dot ${thread.status}"></span>
+            <span class="status-text">${thread.status}</span>
+          </div>
+        </td>
 
-  <td data-label="Thread">
-    <div class="mobile-value thread-value">
-      ${thread.important ? '<span class="thread-flag flag-important">!</span>' : ""}
-      <span class="thread-title">${thread.title}</span>
-    </div>
-  </td>
+        <td data-label="Thread">
+          <div class="mobile-value thread-value">
+            ${thread.important ? '<span class="thread-flag flag-important">!</span>' : ""}
+            <span class="thread-title">${thread.title}</span>
+          </div>
+        </td>
 
-  <td data-label="Replies" class="col-replies">
-    <div class="mobile-value">
-      ${thread.replies}
-    </div>
-  </td>
+        <td data-label="Replies" class="col-replies">
+          <div class="mobile-value">
+            ${thread.replies}
+          </div>
+        </td>
 
-  <td data-label="Last Activity">
-    <div class="mobile-value">
-      ${
-        thread.lastReply && lastReplyDate
-          ? `<div class="last-reply-name">${thread.lastReply.author}</div>
-             <div class="last-reply-date">${formatBoardDate(lastReplyDate)}</div>`
-          : `<span class="no-reply">—</span>`
-      }
-    </div>
-  </td>
-`;
+        <td data-label="Last Activity">
+          <div class="mobile-value">
+            ${
+              thread.lastReply && lastReplyDate
+                ? `<div class="last-reply-name">${thread.lastReply.author}</div>
+                   <div class="last-reply-date">${formatBoardDate(lastReplyDate)}</div>`
+                : `<span class="no-reply">—</span>`
+            }
+          </div>
+        </td>
+      `;
 
       row.style.cursor = "pointer";
       row.addEventListener("click", () => {
@@ -325,6 +393,12 @@ async function loadBoardThreads(boardId, boardName, groupName) {
     });
   } catch (error) {
     console.error("Error loading threads:", error);
+
+    terminalLog("sys", `Unable to load threads for board: ${boardName}`, {
+      speed: 18,
+      delayAfter: 180
+    });
+
     container.innerHTML = `
       <tr>
         <td colspan="5">Unable to load threads.</td>
@@ -369,20 +443,29 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
 
     if (titleEl) titleEl.textContent = threadData.title.toUpperCase();
 
+    logThreadEntry(threadData.title);
+
     if (backBtn) {
       backBtn.addEventListener("click", () => {
+        terminalLog("nav", `Returning to board: ${boardName}`);
         loadBoardView(boardId, boardName, groupName);
       });
     }
 
     if (homeBoardsBtn) {
       homeBoardsBtn.addEventListener("click", () => {
+        terminalLog("nav", "Returning to: Boards");
         loadView("boards");
       });
     }
 
     if (newReplyBtn) {
       newReplyBtn.addEventListener("click", () => {
+        terminalLog("sys", `Reply composer opened for thread: ${threadData.title}`, {
+          speed: 18,
+          delayAfter: 180
+        });
+
         if (!replyBox) return;
 
         replyBox.classList.add("active");
@@ -435,9 +518,21 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
       sendBtn.addEventListener("click", () => {
         const text = textarea.value.trim();
 
-        if (!text) return;
+        if (!text) {
+          terminalLog("sys", "Reply aborted: empty input.", {
+            speed: 18,
+            delayAfter: 160
+          });
+          return;
+        }
 
         console.log("Mock reply:", text);
+
+        terminalLog("sys", `Reply submitted to thread: ${threadData.title}`, {
+          speed: 18,
+          delayAfter: 180
+        });
+        logTip("live post submission will be handled by backend in a future build");
 
         textarea.value = "";
 
@@ -449,6 +544,12 @@ async function loadThreadView(threadId, threadTitle, boardId, boardName, groupNa
     }
   } catch (error) {
     console.error("Error loading thread view:", error);
+
+    terminalLog("sys", `Unable to load thread view: ${threadTitle}`, {
+      speed: 18,
+      delayAfter: 180
+    });
+
     moduleContainer.innerHTML = `
       <div class="module-error">
         <h2>Module error</h2>
@@ -515,6 +616,12 @@ async function loadView(viewName, updateUrl = true) {
 
     updateTopbar(safeView);
 
+    if (!viewName.startsWith("boards-")) {
+      logViewEntry(safeView);
+    } else if (safeView === "boards") {
+      terminalLog("nav", "Entered: Boards");
+    }
+
     if (updateUrl) {
       if (viewName.startsWith("boards-")) {
         updateHash(viewName);
@@ -524,6 +631,11 @@ async function loadView(viewName, updateUrl = true) {
     }
   } catch (error) {
     console.error(error);
+
+    terminalLog("sys", `Unable to load requested module: ${safeView}`, {
+      speed: 18,
+      delayAfter: 180
+    });
 
     moduleContainer.innerHTML = `
       <div class="module-error">
@@ -567,6 +679,11 @@ window.addEventListener("hashchange", () => {
 // ========================
 
 console.log("Renoria main interface initialized.");
+
+terminalLog("sys", "Main interface initialized.", {
+  speed: 18,
+  delayAfter: 180
+});
 
 loadMainLogs();
 
