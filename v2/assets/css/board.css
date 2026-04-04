@@ -290,17 +290,16 @@
   }
 
   /* ogni riga label + value */
-  .board-view .board-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+ .board-view .board-table td {
+  display: grid;
+  grid-template-columns: 95px 1fr;
 
-    gap: 10px;
-    padding: 4px 0;
+  gap: 10px;
+  padding: 4px 0;
 
-    white-space: normal;
-    text-align: left;
-  }
+  white-space: normal;
+  align-items: start;
+}
 
   /* LABEL */
   .board-view .board-table td::before {
@@ -311,8 +310,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
 
-    flex-shrink: 0;
-    min-width: 95px;
+    align-self: start;
   }
 
   /* VALUE (parte destra) */
