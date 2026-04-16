@@ -46,6 +46,24 @@ body {
   }
 }
 
+.login-button {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(197, 167, 255, 0.12);
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.login-button:hover {
+  background: rgba(197, 167, 255, 0.14);
+  color: var(--text);
+}
+
 .content {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
