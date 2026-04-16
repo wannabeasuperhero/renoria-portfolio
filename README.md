@@ -22,23 +22,33 @@ The goal is to evolve it into a fully interactive and persistent system.
 
 ---
 
+# 🚀 Current Status — V2
+
+Renoria V2 is now live (16/04/2026).
+
+Key features implemented:
+
+- Main dashboard and interface structure
+
+---
+
 # ⚙️ Current Features
 
-- Dynamic interface structure (WIP)
-- Forum system (WIP)
-- Thread and post handling
+- Dynamic interface structure
+- Forum system (JSON-based)
 - Log system (JSON-based)
 - Modular frontend architecture
 
 ---
 
-## 🚧 Roadmap
+## 🚧 Roadmap to V3
 
-- [ ] Full backend integration (PHP + MySQL)
-- [ ] Authentication system (login, sessions, roles)
-- [ ] Log automation system
-- [ ] Admin panel
+- [ ] Board system with backend integration (PHP + MySQL)
 - [ ] Bilingual support (IT / EN)
+- [ ] Log system with automation capabilities
+- [ ] Office module (CV, contacts, professional area)
+- [ ] Admin panel
+- [ ] Profile module
 
 ---
 
@@ -65,11 +75,6 @@ Focus areas:
 
 ---
 
-# 🚀 Status
-
-Active development.
-
----
 
 # 🌐 Live
 
