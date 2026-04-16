@@ -1,4 +1,4 @@
-# <img src="assets/Logo_R.svg" width="30" /> Renoria's Portfolio
+# <img src="assets/icons/Logo_R.svg" width="30" /> Renoria's Portfolio
 
 > An interactive portfolio built as a system.
 
