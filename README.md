@@ -26,17 +26,22 @@ The goal is to evolve it into a fully interactive and persistent system.
 
 Renoria V2 is now live (16/04/2026).
 
-Key features implemented:
+Key elements currently implemented:
 
-- Main dashboard and interface structure
+- Main page and dashboard interface
+- Board system powered by JSON data
+- Static log system powered by JSON
+- Modular frontend structure
 
 ---
 
 # ⚙️ Current Features
 
-- Dynamic interface structure
-- Forum system (JSON-based)
-- Log system (JSON-based)
+- Dynamic interface layout
+- Main dashboard view
+- Board / thread navigation structure
+- JSON-based board content
+- JSON-based development log
 - Modular frontend architecture
 
 ---
