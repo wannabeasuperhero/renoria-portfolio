@@ -1,0 +1,15 @@
+# mac
+.DS_Store
+
+# env (SUPER importante)
+.env
+
+# dipendenze
+node_modules/
+vendor/
+
+# config locali
+*.local.php
+
+# log / debug
+*.log
