@@ -38,6 +38,11 @@
 }
 
 .login-placeholder {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--soft-line);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.75rem;
 }
 
 .section-title {

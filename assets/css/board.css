@@ -202,11 +202,13 @@
 }
 
 .board-view .status-dot.closed {
-  background: #5e567b;
+  background: #d06b6b;
+  box-shadow: 0 0 8px rgba(208, 107, 107, 0.18);
 }
 
 .board-view .status-dot.archived {
-  background: #8e7aa8;
+  background: #8d3737;
+  box-shadow: 0 0 8px rgba(208, 107, 107, 0.18);
 }
 
 .board-view .status-text {

@@ -1,0 +1,189 @@
+.new-thread-view {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+  min-height: 100%;
+  color: var(--text);
+  background: transparent;
+}
+
+.new-thread-view .location-title {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.new-thread-view .location-path {
+  margin: 0 0 6px;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8c78ba;
+}
+
+.new-thread-view .location-path .path-dim {
+  color: rgba(140, 120, 186, 0.58);
+}
+
+.new-thread-view .location-name {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 248, 0.94);
+}
+
+.new-thread-view .thread-separator {
+  border: 0;
+  height: 1px;
+  background: rgba(197, 167, 255, 0.08);
+  margin: 0 0 20px;
+}
+
+.new-thread-view .btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.new-thread-view .btn-row .sidebar-button {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(197, 167, 255, 0.12);
+  border-radius: 999px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease;
+}
+
+.new-thread-view .btn-row .sidebar-button:hover {
+  background: rgba(197, 167, 255, 0.12);
+  border-color: rgba(197, 167, 255, 0.16);
+  box-shadow: 0 0 14px rgba(197, 167, 255, 0.06);
+  color: var(--text);
+  text-shadow: none;
+}
+
+.new-thread-view .new-thread-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.new-thread-view .new-thread-input,
+.new-thread-view .new-thread-textarea,
+.new-thread-view .new-thread-select {
+  width: 100%;
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(18, 16, 24, 0.72);
+  border: 1px solid rgba(197, 167, 255, 0.08);
+  color: rgba(243, 238, 248, 0.85);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.new-thread-view .new-thread-input:focus,
+.new-thread-view .new-thread-input:focus-visible,
+.new-thread-view .new-thread-textarea:focus,
+.new-thread-view .new-thread-textarea:focus-visible,
+.new-thread-view .new-thread-select:focus,
+.new-thread-view .new-thread-select:focus-visible {
+  border-color: rgba(197, 167, 255, 0.18);
+  box-shadow: 0 0 10px rgba(197, 167, 255, 0.08);
+}
+
+.new-thread-view .new-thread-textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.new-thread-view .field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.new-thread-view .check-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.new-thread-view .check-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(243, 238, 248, 0.76);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.new-thread-view .check-item input {
+  accent-color: #c5a7ff;
+}
+
+.new-thread-view .new-thread-actions {
+  margin-top: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+.new-thread-view .new-thread-actions .sidebar-button {
+  width: auto;
+  padding: 8px 16px;
+  background: rgba(30, 26, 38, 0.7);
+  border: 1px solid rgba(197, 167, 255, 0.18);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.new-thread-view .new-thread-actions .sidebar-button:hover {
+  background: rgba(197, 167, 255, 0.12);
+  border-color: rgba(197, 167, 255, 0.28);
+  color: var(--text);
+}
+
+@media (max-width: 820px) {
+  .new-thread-view {
+    padding: 24px 10px 30px;
+  }
+
+  .new-thread-view .btn-row {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .new-thread-view .btn-row .sidebar-button {
+    padding: 10px 16px;
+    font-size: 0.72rem;
+  }
+
+  .new-thread-view .field-grid {
+    grid-template-columns: 1fr;
+  }
+}
